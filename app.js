@@ -7,8 +7,10 @@ import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import routes from "./routes";
+import { assertSpreadProperty } from "babel-types";
 
 const app = express();
+app.set("view engine", "pug");
 
 app.use(cookieParser());
 app.use(bodyParser.json());
