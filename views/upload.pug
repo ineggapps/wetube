@@ -1,7 +1,7 @@
 extends layouts/main
 block content
     .form-container
-        form(action=routes.editProfile,method="post")
+        form(action=routes.postUpload,method="post")
             label(for="video") Video File
             input(type="file", id="video", name="video")
             input(type="text",placeholder="Title",name="title")

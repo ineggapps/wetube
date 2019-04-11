@@ -1,7 +1,8 @@
 import express from "express";
 import routes from "../routes";
 import {
-  upload,
+  getUpload,
+  postUpload,
   videoDetail,
   editvideo,
   deleteVideo,
@@ -9,8 +10,11 @@ import {
 } from "../controllers/videoController";
 
 const videoRouter = express.Router();
-videoRouter.get(routes.upload, upload);
-videoRouter.get(routes.videoDetail, videoDetail);
+videoRouter.get(routes.upload, getUpload);
+videoRouter.post(routes.upload, postUpload);
+
+videoRouter.get(routes.videoDetail(), videoDetail);
+//↑ routes.videoDetail is function. Therfore, when this method is called, it should be excuted!!! . -> videoDetail() 괄호 꼭! 명시
 videoRouter.get(routes.editVideo, editvideo);
 videoRouter.get(routes.deleteVideo, deleteVideo);
 
