@@ -1,3 +1,9 @@
 extends layouts/main
 block content
-    p Upload
+    .form-container
+        form(action=routes.editProfile,method="post")
+            label(for="video") Video File
+            input(type="file", id="video", name="video")
+            input(type="text",placeholder="Title",name="title")
+            textarea(name="description",placeholder="Description")
+            input(type="submit",value="Upload Video")
