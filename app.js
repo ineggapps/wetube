@@ -6,18 +6,20 @@ import bodyParser from "body-parser";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
+import { localsMiddleware } from "./middlewares";
 import routes from "./routes";
 import { assertSpreadProperty } from "babel-types";
 
 const app = express();
 app.set("view engine", "pug");
 
+app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(helmet());
 app.use(morgan("dev"));
 
+app.use(localsMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
