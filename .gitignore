@@ -85,3 +85,6 @@ typings/
 
 #security
 package-lock.json
+
+#upload files
+uploads/
