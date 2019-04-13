@@ -87,4 +87,7 @@ typings/
 package-lock.json
 
 #upload files
-uploads/
+uploads
+
+#webpack files
+static
