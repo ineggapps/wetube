@@ -9,22 +9,22 @@ import {
   getEditVideo,
   postEditVideo
 } from "../controllers/videoController";
-import { uploadVideo } from "../middlewares";
+import { uploadVideo, onlyPrivate } from "../middlewares";
 
 const videoRouter = express.Router();
 // Upload
-videoRouter.get(routes.upload, getUpload);
-videoRouter.post(routes.upload, uploadVideo, postUpload);
+videoRouter.get(routes.upload, onlyPrivate, getUpload);
+videoRouter.post(routes.upload, onlyPrivate, uploadVideo, postUpload);
 
 // Video Detail
 videoRouter.get(routes.videoDetail(), videoDetail);
 // ↑ routes.videoDetail is function. Therfore, when this method is called, it should be excuted!!! . -> videoDetail() 괄호 꼭! 명시
 
 // Edit Video
-videoRouter.get(routes.editVideo(), getEditVideo);
-videoRouter.post(routes.editVideo(), postEditVideo);
+videoRouter.get(routes.editVideo(), onlyPrivate, getEditVideo);
+videoRouter.post(routes.editVideo(), onlyPrivate, postEditVideo);
 
 // Delete Video
-videoRouter.get(routes.deleteVideo(), deleteVideo);
+videoRouter.get(routes.deleteVideo(), onlyPrivate, deleteVideo);
 
 export default videoRouter;
