@@ -4,14 +4,18 @@ block content
         .video__player
             video(src=`/${video.fileUrl}`)
         .video__info
-            a(href=routes.editVideo(video.id)) 
-                button Edit Video
+            if loggedUser!== null && video.creator.id === loggedUser.id
+                a(href=routes.editVideo(video.id)) 
+                    button Edit Video
             h5.video__title=video.title
             p.video__description=video.description
             if(video.views===1)
                 span.video__views 1 view
             else
                 span.video__views #{video.views} views
+            .video__author
+                |Uploaded by&nbsp;
+                a(href=routes.userDetail(video.creator.id))=video.creator.name
         .video__comments
             if video.comments.length === 1
                 // In english, 단수/복수에 따라 '-s/es...' 등 철자가 달라지므로 if문으로 분기하여 작성한다.
