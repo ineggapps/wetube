@@ -4,7 +4,7 @@ const addCommentForm = document.getElementById("jsAddComment");
 const commentList = document.getElementById("jsCommentList");
 const commentNumber = document.getElementById("jsCommentNumber");
 const videoId = window.location.href.split("/videos/")[1];
-
+const ID_TARGET_REMOVE = "target_remove";
 //REMOVE COMMENT
 const myCommentList = document.getElementsByClassName("comment__delete");
 const decreaseNumber = () => {
@@ -14,6 +14,7 @@ const decreaseNumber = () => {
 const handleRemoveComment = async event => {
   const target = event.target.parentNode;
   const commendId = target.getElementsByClassName("comment__delete-id")[0].innerHTML;
+  target.parentNode.setAttribute("id", ID_TARGET_REMOVE);
   if (!commendId) return;
   const response = await axios({
     url: `/api/${videoId}/comment/${commendId}/remove`,
@@ -22,7 +23,7 @@ const handleRemoveComment = async event => {
   });
   if (response.status === 200) {
     decreaseNumber();
-    commentList.remove(target.parentNode);
+    target.parentNode.remove();
   }
 };
 
