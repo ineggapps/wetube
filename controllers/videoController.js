@@ -169,16 +169,17 @@ export const postAddComment = async (req, res) => {
 //DELETE comment
 export const postRemoveComment = async (req, res) => {
   const {
-    params: { comment_id },
+    params: { commentId },
     user
   } = req;
   try {
-    const comment = await Comment.findById(comment_id);
-    if (user.id !== comment.creator) {
+    const comment = await Comment.findById(commentId);
+    console.log(comment, "*****", comment.creator, user.id);
+    if (String(comment.creator) !== user.id) {
       throw "Comment can be deleted only writer!";
       return;
     }
-    await Comment.findByIdAndDelete(comment_id);
+    await Comment.findByIdAndDelete(commentId);
     res.status(200);
     res.send("done!");
   } catch (error) {

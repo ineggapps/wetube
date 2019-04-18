@@ -32,7 +32,7 @@ const FB_CALLBACK = "/auth/facebook/callback";
 const API = "/api";
 const REGISTER_VIEW = "/:id/view";
 const ADD_COMMENT = "/:id/comment";
-const REMOVE_COMMENT = "/:id/comment/:comment_id/remove";
+const REMOVE_COMMENT = "/:id/comment/:commentId/remove";
 
 const routes = {
   home: HOME,
