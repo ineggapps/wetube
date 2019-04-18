@@ -7,6 +7,16 @@ const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("jsVolume");
 
+const registerView = () => {
+  const videoId = window.location.href.split("/videos/")[1];
+  fetch(`/api/${videoId}/view`, {
+    method: "POST"
+    //if you don't alter the db, it should be GET request.
+    //if you alter DB, it should be POST request.
+    //Property of views will alter column of views, therfore, it should be POST request.
+  });
+};
+
 function changeVolumeUI(volume) {
   if (volume >= 0.6) {
     volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
@@ -98,6 +108,7 @@ function getCurrentTime() {
 }
 
 function handleEnded() {
+  registerView();
   videoPlayer.currentTime = 0;
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
 }
