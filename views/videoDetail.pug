@@ -34,3 +34,7 @@ block content
                 each comment in video.comments.reverse()
                     li
                         span=comment.text
+                        if loggedUser!==null && loggedUser.id==comment.creator
+                            span.comment__delete
+                                i.fas.fa-trash-alt
+                                span.comment__delete-id=comment._id
