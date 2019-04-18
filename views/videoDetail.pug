@@ -21,6 +21,16 @@ block content
         .video__comments
             if video.comments.length === 1
                 // In english, 단수/복수에 따라 '-s/es...' 등 철자가 달라지므로 if문으로 분기하여 작성한다.
-                span.video__comment-number  1 comment
+                span.video__comment-number
+                    span#jsCommentNumber 1
+                    |  comment
             else
-                span.video__comment-number #{video.comments.length} comments
+                span.video__comment-number
+                    span#jsCommentNumber=video.comments.length
+                    |  comments
+            form.add__comment#jsAddComment
+                input(type="text", placeholder="Add a comment")
+            ul.video__comments-list#jsCommentList
+                each comment in video.comments.reverse()
+                    li
+                        span=comment.text
